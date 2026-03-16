@@ -2,10 +2,10 @@ import "./globals.css";
 
 export const metadata = {
   title: "LoL攻略ブログ | パッチノート・環境分析",
-  description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新",
+  description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新します。",
   openGraph: {
     title: "LoL攻略ブログ | パッチノート・環境分析",
-    description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新",
+    description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新します。",
     url: "https://lol-db-beta.vercel.app",
     siteName: "LoL攻略ブログ",
     images: [
@@ -20,10 +20,12 @@ export const metadata = {
     type: "website",
   },
 };
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
       <head>
+        <meta charSet="utf-8" />
         <meta name="google-site-verification" content="7iA-AZv2S9THduSYS0iUy7DupUvXVC25-Y5OOT-dgI0" />
         <script
           async
