@@ -1,3 +1,5 @@
+"use client";
+
 export default function Contact() {
   return (
     <main style={{ padding: "40px 20px", maxWidth: "600px", margin: "0 auto" }}>
