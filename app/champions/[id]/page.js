@@ -154,14 +154,35 @@ export default function ChampionDetail() {
                 />
                 <span style={{ position: "absolute", bottom: "-8px", left: "50%", transform: "translateX(-50%)", background: "#C89B3C", color: "#000", fontSize: "10px", fontWeight: "bold", padding: "1px 6px", borderRadius: "4px" }}>{spellKeys[i]}</span>
               </div>
-              <div>
+              <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: "bold", color: "#C89B3C", marginBottom: "4px" }}>{spell.name}</div>
-                <div style={{ fontSize: "13px", color: "#aaa", lineHeight: "1.6" }}>{spell.description.replace(/<[^>]+>/g, "")}</div>
-                <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
+                <div style={{ fontSize: "13px", color: "#aaa", lineHeight: "1.6", marginBottom: "8px" }}>{spell.description.replace(/<[^>]+>/g, "")}</div>
+                <div style={{ display: "flex", gap: "12px", marginBottom: "8px" }}>
                   <span style={{ fontSize: "11px", color: "#888" }}>CD: {spell.cooldownBurn}s</span>
                   <span style={{ fontSize: "11px", color: "#888" }}>コスト: {spell.costBurn}</span>
                   <span style={{ fontSize: "11px", color: "#888" }}>射程: {spell.rangeBurn}</span>
                 </div>
+                {spell.effectBurn && spell.effectBurn.filter(e => e && e !== "0").length > 0 && (
+                  <div style={{ borderTop: "1px solid #333", paddingTop: "8px" }}>
+                    <div style={{ fontSize: "11px", color: "#888", marginBottom: "6px" }}>レベル別効果量</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                      {spell.effectBurn.map((effect, j) => (
+                        effect && effect !== "0" ? (
+                          <div key={j} style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                            <span style={{ fontSize: "11px", color: "#666", minWidth: "60px" }}>効果{j}</span>
+                            <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
+                              {effect.split("/").map((val, k) => (
+                                <span key={k} style={{ background: "#0a0a1a", color: "#C89B3C", padding: "2px 6px", borderRadius: "4px", fontSize: "11px", border: "1px solid #333" }}>
+                                  Lv{k + 1}: {val}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ) : null
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
