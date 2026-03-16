@@ -8,6 +8,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1353351214697338"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body style={{ background: "#0a0a1a", color: "#fff", margin: 0, fontFamily: "sans-serif" }}>
         <nav style={{
           background: "#1a1a2e",
@@ -22,8 +29,8 @@ export default function RootLayout({ children }) {
             LoL DB
           </a>
           <a href="/champions" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>チャンピオン</a>
-          <a href="/privacy" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>プライバシーポリシー</a>
           <a href="/blog" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>ブログ</a>
+          <a href="/privacy" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>プライバシーポリシー</a>
           <a href="/contact" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>お問い合わせ</a>
         </nav>
         {children}
