@@ -1,14 +1,15 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "LoL Champion DB",
-  description: "League of Legends チャンピオンデータベース",
+  title: "LoL攻略ブログ | パッチノート・環境分析",
+  description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
       <head>
+        <meta name="google-site-verification" content="7iA-AZv2S9THduSYS0iUy7DupUvXVC25-Y5OOT-dgI0" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1353351214697338"
@@ -26,9 +27,9 @@ export default function RootLayout({ children }) {
           height: "56px"
         }}>
           <a href="/" style={{ color: "#C89B3C", fontWeight: "bold", fontSize: "18px", textDecoration: "none" }}>
-            LoL DB
+            LoL攻略ブログ
           </a>
-          <a href="/champions" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>チャンピオン</a>
+          <a href="/champions" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>チャンピオンDB</a>
           <a href="/blog" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>ブログ</a>
           <a href="/privacy" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>プライバシーポリシー</a>
           <a href="/contact" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>お問い合わせ</a>
