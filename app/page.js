@@ -38,11 +38,12 @@ export default function Home() {
   useEffect(() => {
     fetch("/api/posts")
       .then(res => res.json())
-      .then(data => setGeneratedPosts(data.map(p => ({ ...p, tag: "攻略" }))))
+      .then(data => setGeneratedPosts(data.map(p => ({ ...p, tag: p.tag || "攻略" }))))
       .catch(() => {});
   }, []);
 
   const allPosts = [...staticPosts, ...generatedPosts];
+  const latestPosts = allPosts.slice(0, 3);
 
   return (
     <main style={{ padding: "40px 20px", maxWidth: "1000px", margin: "0 auto" }}>
@@ -56,13 +57,16 @@ export default function Home() {
       </div>
 
       <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
-        {/* メイン記事一覧 */}
+        {/* メイン：最新3記事 */}
         <div style={{ flex: 2, minWidth: "300px" }}>
-          <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "16px", borderBottom: "1px solid #333", paddingBottom: "8px" }}>
-            最新記事
-          </h2>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", borderBottom: "1px solid #333", paddingBottom: "8px" }}>
+            <h2 style={{ fontSize: "18px", fontWeight: "bold" }}>最新記事</h2>
+            <Link href="/blog" style={{ color: "#C89B3C", fontSize: "13px", textDecoration: "none" }}>
+              すべての記事を見る →
+            </Link>
+          </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            {allPosts.map(post => {
+            {latestPosts.map(post => {
               const tagStyle = tagColors[post.tag] || tagColors["攻略"];
               return (
                 <Link key={post.id} href={`/blog/${post.id}`} style={{ textDecoration: "none" }}>
@@ -98,9 +102,11 @@ export default function Home() {
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "32px" }}>
             {Object.entries(tagColors).map(([tag, style]) => (
-              <div key={tag} style={{ background: style.bg, color: style.color, border: `1px solid ${style.border}`, padding: "8px 14px", borderRadius: "8px", fontSize: "14px" }}>
-                {tag}
-              </div>
+              <Link key={tag} href={`/blog?tag=${tag}`} style={{ textDecoration: "none" }}>
+                <div style={{ background: style.bg, color: style.color, border: `1px solid ${style.border}`, padding: "8px 14px", borderRadius: "8px", fontSize: "14px" }}>
+                  {tag}
+                </div>
+              </Link>
             ))}
           </div>
 
