@@ -26,6 +26,29 @@ export default function ChampionDetail() {
   const roleJP = { Assassin:"アサシン", Fighter:"ファイター", Mage:"メイジ", Marksman:"マークスマン", Support:"サポート", Tank:"タンク" };
   const stats = champ.stats;
 
+  const statList = [
+    ["HP", stats.hp],
+    ["HP（成長）", stats.hpperlevel],
+    ["HP再生", stats.hpregen],
+    ["HP再生（成長）", stats.hpregenperlevel],
+    ["マナ", stats.mp],
+    ["マナ（成長）", stats.mpperlevel],
+    ["マナ再生", stats.mpregen],
+    ["マナ再生（成長）", stats.mpregenperlevel],
+    ["攻撃力", stats.attackdamage],
+    ["攻撃力（成長）", stats.attackdamageperlevel],
+    ["攻撃速度", stats.attackspeed],
+    ["攻撃速度（成長）", stats.attackspeedperlevel],
+    ["アーマー", stats.armor],
+    ["アーマー（成長）", stats.armorperlevel],
+    ["魔法抵抗力", stats.spellblock],
+    ["魔法抵抗力（成長）", stats.spellblockperlevel],
+    ["クリティカル率", stats.crit],
+    ["クリティカル率（成長）", stats.critperlevel],
+    ["移動速度", stats.movespeed],
+    ["攻撃射程", stats.attackrange],
+  ].filter(([, value]) => value !== undefined && value !== null && value !== 0);
+
   return (
     <main style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
       <Link href="/champions" style={{ color: "#C89B3C", textDecoration: "none", fontSize: "14px" }}>
@@ -56,22 +79,8 @@ export default function ChampionDetail() {
 
       <h2 style={{ fontSize: "20px", fontWeight: "bold", margin: "32px 0 16px" }}>基本ステータス</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "10px" }}>
-        {[
-          ["HP", stats.hp],
-          ["HP成長", stats.hpperlevel],
-          ["攻撃力", stats.attackdamage],
-          ["攻撃力成長", stats.attackdamageperlevel],
-          ["防御力", stats.armor],
-          ["防御力成長", stats.armorperlevel],
-          ["魔法防御", stats.spellblock],
-          ["移動速度", stats.movespeed],
-          ["射程", stats.attackrange],
-          ["HP回復", stats.hpregen],
-        ].map(([label, value]) => (
-          <div key={label} style={{
-            background: "#1a1a2e", borderRadius: "8px",
-            padding: "12px 14px",
-          }}>
+        {statList.map(([label, value]) => (
+          <div key={label} style={{ background: "#1a1a2e", borderRadius: "8px", padding: "12px 14px" }}>
             <div style={{ fontSize: "11px", color: "#888", marginBottom: "4px" }}>{label}</div>
             <div style={{ fontSize: "20px", fontWeight: "bold", color: "#C89B3C" }}>{Math.round(value * 10) / 10}</div>
           </div>
