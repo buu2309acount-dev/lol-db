@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
           </a>
           <a href="/champions" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>チャンピオン</a>
           <a href="/privacy" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>プライバシーポリシー</a>
+          <a href="/blog" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>ブログ</a>
           <a href="/contact" style={{ color: "#ccc", fontSize: "14px", textDecoration: "none" }}>お問い合わせ</a>
         </nav>
         {children}
