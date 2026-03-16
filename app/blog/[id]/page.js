@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
-const posts = {
+const staticPosts = {
   "patch-15-5": {
     title: "パッチ15.5 変更点まとめ",
     date: "2026年3月16日",
@@ -79,7 +80,19 @@ Aティア：レオナ、タリック、ブラウム
 
 export default function BlogPost() {
   const { id } = useParams();
-  const post = posts[id];
+  const [post, setPost] = useState(staticPosts[id] || null);
+
+  useEffect(() => {
+    if (!staticPosts[id]) {
+      fetch("/api/posts")
+        .then(res => res.json())
+        .then(data => {
+          const found = data.find(p => p.id === id);
+          if (found) setPost(found);
+        })
+        .catch(() => {});
+    }
+  }, [id]);
 
   if (!post) return (
     <main style={{ padding: "40px 20px" }}>

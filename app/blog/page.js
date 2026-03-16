@@ -1,6 +1,8 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-const posts = [
+
+const staticPosts = [
   {
     id: "patch-15-5",
     title: "パッチ15.5 変更点まとめ",
@@ -22,13 +24,24 @@ const posts = [
 ];
 
 export default function Blog() {
+  const [generatedPosts, setGeneratedPosts] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/posts")
+      .then(res => res.json())
+      .then(data => setGeneratedPosts(data))
+      .catch(() => {});
+  }, []);
+
+  const allPosts = [...staticPosts, ...generatedPosts];
+
   return (
     <main style={{ padding: "40px 20px", maxWidth: "900px", margin: "0 auto" }}>
       <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "8px" }}>ブログ</h1>
-      <p style={{ color: "#888", marginBottom: "32px", fontSize: "14px" }}>パッチ情報・攻略記事</p>
+      <p style={{ color: "#888", marginBottom: "32px", fontSize: "14px" }}>パッチ情報・攻略記事 {allPosts.length}件</p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        {posts.map(post => (
+        {allPosts.map(post => (
           <Link key={post.id} href={`/blog/${post.id}`} style={{ textDecoration: "none" }}>
             <div style={{
               background: "#1a1a2e",
@@ -42,7 +55,7 @@ export default function Blog() {
             >
               <div style={{ fontSize: "12px", color: "#888", marginBottom: "8px" }}>{post.date}</div>
               <div style={{ fontSize: "18px", fontWeight: "bold", color: "#C89B3C", marginBottom: "8px" }}>{post.title}</div>
-              <div style={{ fontSize: "14px", color: "#ccc" }}>{post.description}</div>
+              <div style={{ fontSize: "14px", color: "#ccc" }}>{post.description || post.content?.substring(0, 80) + "..."}</div>
             </div>
           </Link>
         ))}
