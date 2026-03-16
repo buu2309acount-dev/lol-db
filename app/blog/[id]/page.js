@@ -8,6 +8,22 @@ export async function generateMetadata({ params }) {
   return {
     title: `${post.title} | LoL攻略ブログ`,
     description: post.content?.substring(0, 100),
+    openGraph: {
+      title: `${post.title} | LoL攻略ブログ`,
+      description: post.content?.substring(0, 100),
+      url: `https://lol-db-beta.vercel.app/blog/${id}`,
+      siteName: "LoL攻略ブログ",
+      images: [
+        {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg",
+          width: 1215,
+          height: 717,
+          alt: post.title,
+        },
+      ],
+      locale: "ja_JP",
+      type: "article",
+    },
   };
 }
 

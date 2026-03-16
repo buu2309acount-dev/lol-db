@@ -3,8 +3,23 @@ import "./globals.css";
 export const metadata = {
   title: "LoL攻略ブログ | パッチノート・環境分析",
   description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新",
+  openGraph: {
+    title: "LoL攻略ブログ | パッチノート・環境分析",
+    description: "League of Legendsのパッチノート・環境分析・攻略情報を毎パッチ更新",
+    url: "https://lol-db-beta.vercel.app",
+    siteName: "LoL攻略ブログ",
+    images: [
+      {
+        url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg",
+        width: 1215,
+        height: 717,
+        alt: "LoL攻略ブログ",
+      },
+    ],
+    locale: "ja_JP",
+    type: "website",
+  },
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
